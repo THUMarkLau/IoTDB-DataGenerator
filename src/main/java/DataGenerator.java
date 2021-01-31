@@ -14,7 +14,7 @@ import java.util.Random;
 public class DataGenerator {
   private static final Session session = new Session("127.0.0.1", 6667, "root", "root");
   private static final int TIMESERIES_NUM = 1000;
-  private static final int DATA_NUM = 100000;
+  private static final int DATA_NUM = 1000;
 
   public static void main(String[] args) throws Exception {
     session.open(false);
