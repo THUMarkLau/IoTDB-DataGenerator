@@ -1,11 +1,13 @@
 import org.apache.iotdb.rpc.IoTDBConnectionException;
+import org.apache.iotdb.rpc.StatementExecutionException;
 import org.apache.iotdb.session.*;
 
 public class DataQuerier {
   private static final Session session = new Session("127.0.0.1", 6667, "root", "root");
   private static final String[] sqls = new String[] {"select count(s0), count(s999) from root.test.device group by ([0, 100000), 100ms)"};
-  public static void main(String[] args) throws IoTDBConnectionException {
+  public static void main(String[] args) throws IoTDBConnectionException, StatementExecutionException {
     session.open(false);
+    session.executeNonQueryStatement("clear cache");
     query();
   }
 
