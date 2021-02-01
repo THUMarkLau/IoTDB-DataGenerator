@@ -41,18 +41,24 @@ public class TsFileReadTime {
         }
       }
       System.out.println(measurementIdx.toString());
+      Set<String> sensorSet = new HashSet<>();
       for(Integer idx : measurementIdx) {
         paths.add(new Path("root.test.device", "s" + idx));
+        sensorSet.add("s" + idx);
       }
+
+      long startTime = System.currentTimeMillis();
+      reader.readTimeseriesMetadata("root.test.device", sensorSet);
+      long metadataReadTime = System.currentTimeMillis() - startTime;
       // IExpression timeFilter = new GlobalTimeExpression(TimeFilter.ltEq(10000l));
       QueryExpression queryExpression = QueryExpression.create(paths, null);
       QueryDataSet dataSet = readOnlyTsFile.query(queryExpression);
-      long startTime = System.currentTimeMillis();
+      startTime = System.currentTimeMillis();
       while(dataSet.hasNext()) {
         dataSet.next();
       }
       long lastTime = System.currentTimeMillis() - startTime;
-      System.out.println("Estimation seek time: " + estimatedCost + "ms");
+      System.out.println("Estimation seek time: " + estimatedCost * 10.0f + "ms");
       System.out.println("Real query time: " + lastTime + " ms");
     }
   }

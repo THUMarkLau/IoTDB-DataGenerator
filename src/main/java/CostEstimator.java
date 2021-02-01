@@ -51,7 +51,9 @@ public class CostEstimator {
   static float getSeekCost(long distance) {
     if (!init) {
       readEmpiricalFile();
+      init = true;
     }
+    System.out.println("Distance: "+distance);
     float seekCost = 0;
     for(int i = 0; i < empiricalData.size() - 1; ++i) {
       if (distance >= empiricalData.get(i).left && distance < empiricalData.get(i + 1).left) {
