@@ -50,6 +50,7 @@ public class TsFileReadTime {
       long startTime = System.currentTimeMillis();
       reader.readTimeseriesMetadata("root.test.device", sensorSet);
       long metadataReadTime = System.currentTimeMillis() - startTime;
+      System.out.println("Metadata read time: " + metadataReadTime + " ms");
       // IExpression timeFilter = new GlobalTimeExpression(TimeFilter.ltEq(10000l));
       QueryExpression queryExpression = QueryExpression.create(paths, null);
       QueryDataSet dataSet = readOnlyTsFile.query(queryExpression);
