@@ -28,7 +28,7 @@ public class DataQuerier {
         } catch (Exception e) {
           e.printStackTrace();
         }
-        System.out.println("SQL:" + sql + ": " + totalTime / 100l + " ms");
+        System.out.println("SQL:" + sql + "(average): " + totalTime / 100l + " ms");
       }
     }
   }
