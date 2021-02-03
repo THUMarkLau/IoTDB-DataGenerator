@@ -28,7 +28,7 @@ public class DataQuerier {
     StringBuilder sql = new StringBuilder();
     sql.append("Select ");
     for(int i = 0; i < measurementIdx.size(); ++i) {
-      sql.append("avg(s" + i + ")");
+      sql.append("avg(s" + measurementIdx.get(i) + ")");
       if (i != measurementIdx.size() - 1) {
         sql.append(", ");
       } else {
