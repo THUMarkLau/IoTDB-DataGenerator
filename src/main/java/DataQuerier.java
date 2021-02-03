@@ -48,12 +48,12 @@ public class DataQuerier {
     float estimatedCost = 0;
     for(int i = 0; i < measurementIdx.size() - 1; ++i) {
       if (measurementIdx.get(i+1) - measurementIdx.get(i) > 1) {
-        estimatedCost += CostEstimator.getSeekCost((long)(measurementIdx.get(i+1) - measurementIdx.get(i) - 1) * 161178l);
+        estimatedCost += CostEstimator.getSeekCost((long)(measurementIdx.get(i+1) - measurementIdx.get(i) - 1) * 80645l);
       }
     }
-    System.out.println("Estimated seek time: " + (estimatedCost * 5.0f) + " ms");
-    System.out.println("Estimated read time: " + ((161178.0f / (80645.0 / 1.1)) * (dataCount * 5)) + " ms");
-    System.out.println("Estimated total time: " + (estimatedCost * 5.0f + 6 + 161178.0f / (80645.0 / 1.1) * dataCount * 5) + "ms");
+    System.out.println("Estimated seek time: " + (estimatedCost * 10.0f) + " ms");
+    System.out.println("Estimated read time: " + 1.1 * (dataCount * 10) + " ms");
+    System.out.println("Estimated total time: " + (estimatedCost * 10.0f + 6 + 1.1 * dataCount * 10) + "ms");
     System.out.println("Real query time: " + lastTime + " ms");
   }
 }
