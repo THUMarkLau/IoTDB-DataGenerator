@@ -6,7 +6,7 @@ import java.util.*;
 
 public class DataQuerier {
   private static final Session session = new Session("127.0.0.1", 6667, "root", "root");
-  static String GROUP_BY_ARGS = " group by ([0, 100000), 25000ms)";
+  static String GROUP_BY_ARGS = " group by ([0, 100000), 200ms)";
   public static void main(String[] args) throws IoTDBConnectionException, StatementExecutionException {
     session.open(false);
     int dataCount = 100;
