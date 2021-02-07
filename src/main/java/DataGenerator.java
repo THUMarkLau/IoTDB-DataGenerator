@@ -31,7 +31,7 @@ public class DataGenerator {
       session.createTimeseries(
               "root.test.device.s" + String.valueOf(i),
               TSDataType.DOUBLE,
-              TSEncoding.PLAIN,
+              TSEncoding.GORILLA,
               CompressionType.SNAPPY);
     }
   }
