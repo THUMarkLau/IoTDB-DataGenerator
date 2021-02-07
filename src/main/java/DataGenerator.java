@@ -14,7 +14,7 @@ import java.util.Random;
 public class DataGenerator {
   private static final Session session = new Session("127.0.0.1", 6667, "root", "root");
   private static final int TIMESERIES_NUM = 1000;
-  private static int DATA_NUM = 18000;
+  private static int DATA_NUM = 10800;
 
   public static void main(String[] args) throws Exception {
     if (args.length > 0) {
@@ -46,7 +46,7 @@ public class DataGenerator {
     for (int s = 0; s < TIMESERIES_NUM; ++s) {
       schemaList.add(new MeasurementSchema("s" + s, TSDataType.DOUBLE));
     }
-    Tablet tablet = new Tablet("root.test.device", schemaList, DATA_NUM);
+    Tablet tablet = new Tablet("root.test.device", schemaList, 3600);
     long timestamp = 0;
     int rowIdx = 0;
     for (int j = 0; j < DATA_NUM*5; ++j) {
