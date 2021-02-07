@@ -14,10 +14,14 @@ import java.util.Random;
 public class DataGenerator {
   private static final Session session = new Session("127.0.0.1", 6667, "root", "root");
   private static final int TIMESERIES_NUM = 1000;
-  private static final int DATA_NUM = 100000;
+  private static int DATA_NUM = 18000;
 
   public static void main(String[] args) throws Exception {
+    if (args.length > 0) {
+      DATA_NUM = Integer.valueOf(args[0]);
+    }
     session.open(false);
+    session.deleteStorageGroup("root.test");
     session.setStorageGroup("root.test");
     createTimeseries();
     generateData();
@@ -42,10 +46,10 @@ public class DataGenerator {
     for (int s = 0; s < TIMESERIES_NUM; ++s) {
       schemaList.add(new MeasurementSchema("s" + s, TSDataType.DOUBLE));
     }
-    Tablet tablet = new Tablet("root.test.device", schemaList, 2000);
+    Tablet tablet = new Tablet("root.test.device", schemaList, DATA_NUM);
     long timestamp = 0;
     int rowIdx = 0;
-    for (int j = 0; j < DATA_NUM; ++j) {
+    for (int j = 0; j < DATA_NUM*5; ++j) {
       rowIdx = tablet.rowSize++;
       timestamp++;
       tablet.addTimestamp(rowIdx, timestamp);
